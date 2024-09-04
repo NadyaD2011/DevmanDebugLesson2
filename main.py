@@ -5,13 +5,13 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-token = os.getenv("FORECAST_TOKEN")
+forecast_token = os.getenv("FORECAST_TOKEN")
 town_title = "Курск"
 
-token = os.getenv("SMS_TOKEN")
-server = SMSServer(token)
+sms_token = os.getenv("SMS_TOKEN")
+server = SMSServer(sms_token)
 
-new_event = get_new_event(token, town_title)
+new_event = get_new_event(forecast_token, town_title)
 event_date = new_event.get_date()
 event_time = new_event.get_time()
 event_area = new_event.get_area()
@@ -48,7 +48,25 @@ server.send(sms_message)
 # Вывод: ошибка не в этом
 
 # Гипотеза 3: Переменная token на самом деле пуста
-# Способ проверки: Выввести переменную токен
+# Способ проверки: Выввести переменную token
 # Код для проверки: print(token)
 # Установленный факт: переменная имеет значение None
 # Вывод: надо найти способ передать значение
+
+# Гипотеза 4.1: Может, `token` всё ещё пуст?
+# Способ проверки: Вывести переменную token
+# Код для проверки: print(token)
+# Установленный факт: token не пуст
+# Вывод: ошибка не в этом
+
+# Гипотеза 4.2: Может, в токене не то значение, не `85b98d96709fd49a69ba8165676e4592`?
+# Способ проверки: Вывести переменную token
+# Код для проверки: print(token)
+# Установленный факт: в переменной token то значение
+# Вывод: ошибка не в этом
+
+# Гипотеза 4.3: Может, значение `85b98d96709fd49a69ba8165676e4592` успевает измениться до строчки `new_event = ...`?
+# Способ проверки: Отследить переменную
+# Код для проверки: print(token)
+# Установленный факт: переменную token перезадают в следующих строчках кода
+# Вывод: надо переименоваать переменные token
