@@ -20,11 +20,11 @@ phenomenon_description = new_event.get_phenomenon()
 sms_template = """{town_title}: {event_time} {event_date} {event_area} ожидается {phenomenon_description}. Будьте внимательны и осторожны."""
 
 sms_message = sms_template.format(
-    phenomenon_description,
-    town_title,
-    event_time,
-    event_date,
-    event_area,
+    town_title=town_title,
+    event_time=event_time,
+    event_date=event_date,
+    event_area=event_area,
+    phenomenon_description=phenomenon_description,
 )
 
 server.send(sms_message)
